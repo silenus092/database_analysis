@@ -63,12 +63,12 @@ public class MySQLAccess_GeneTable {
 		  		      
 		  		    genesets.add(new GeneSets(h_id,symbol,name));
 		  		    
-		  		     /* System.out.println("No :" + count);
+		  		   /*  System.out.println("No :" + count);
 		  		      System.out.println("Hgnc_id: " + h_id);
 		  		      System.out.println("Symbol: " + symbol);
 		  		      System.out.println("Name : " + name );
-		  		      System.out.println("*****************");*/
-		  		      count++;
+		  		      System.out.println("*****************");
+		  		      count++;*/
 		  		    }	
 		  
 		   

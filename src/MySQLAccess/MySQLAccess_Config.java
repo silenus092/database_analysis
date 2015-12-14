@@ -12,17 +12,17 @@ public class  MySQLAccess_Config {
 			" FROM clinical_study c  " +
 			" WHERE c.brief_title LIKE BINARY ";
 	
-	public static String brief_title_query1_LIKE_SYMBOL  = " SELECT c.nct_id  , c.brief_title ,h.symbol ,h.name "+
-			" FROM clinical_study c, hgnc_complete_set h " +
+	public static String brief_title_query1_LIKE_SYMBOL  = " SELECT c.nct_id  , c.brief_title "+
+			" FROM clinical_study c " +
 			" WHERE c.brief_title LIKE ";
 	
-	public static String brief_title_query2_LIKE_BINARY_NAME   = " SELECT c.nct_id  , c.brief_title ,h.symbol ,h.name "+
-			" FROM clinical_study c, hgnc_complete_set h " +
-			" WHERE c.brief_title LIKE BINARY ";
+	public static String brief_title_query2_LIKE_BINARY_NAME   = "SELECT c.nct_id  , c.brief_title "+
+			" FROM clinical_study c " +
+			" WHERE c.brief_title LIKE BINARY ?";
 	
-	public static String brief_title_query2_LIKE_NAME  = " SELECT c.nct_id  , c.brief_title ,h.symbol ,h.name "+
-			" FROM clinical_study c, hgnc_complete_set h " +
-			" WHERE c.brief_title LIKE  ";
+	public static String brief_title_query2_LIKE_NAME  = "SELECT c.nct_id  , c.brief_title  "+
+			" FROM clinical_study c " +
+			" WHERE c.brief_title LIKE ?";
 	
 	/*public static String brief_title_query3_LIKE_BINARY_SYMBOL_NAME
 	

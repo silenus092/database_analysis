@@ -88,7 +88,7 @@ public class WriteExcel {
      RowsExceededException { 
    // Write a few number 
 	 int j = 0;
-   for (int i = 1; i < temp_time_arraylist.size(); i++) {
+   for (int i = 1; i < temp_time_arraylist.size()+1; i++) {
      // First column 
 	 addLabel(sheet, 0, i,geneTable.get(j).getSymbol());
      // Second column 

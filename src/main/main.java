@@ -34,25 +34,64 @@ public class main {
 		
 	    	 if(ColumName.equalsIgnoreCase(MySQLAccess_Config.column_brief_title) ){
 	    		 temp_time_arraylist = new ArrayList<Double>();
-	    		 
 	    		 System.out.println(" ************* [Main] RunAnalysis_BriefTitle *************");
 	    		 MySQLAccess_ClinicalStudyTable clinical_study =  test.getClinical_studyTable_instance();
 	    		 MySQLAccess_GeneTable geneTable = test.getGeneTable_instance();
 	    		 
-	    		 System.out.println("[Main] ArrayList<GeneSets>  :"+geneTable.getArrayListGenesets().size());
+	    		 System.out.println(" ************* [Main] brief_title_query1_LIKE_BINARY_SYMBOL *************");
 	    		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
-	    			 System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+	    			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
 	    			 clinical_study.RunAnalysis_BriefTitle(MySQLAccess_Config.brief_title_query1_LIKE_BINARY_SYMBOL , test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
 	    			 temp_time_arraylist.add(clinical_study.getElapsed_time());
 	    		 }
 	    		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
 	    		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
-	    		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile *************");
-	    		 constructExcelFile("column_brief_title" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
-	    		/*mysql_access.getClinical_studyTable_instance().RunAnalysis_BriefTitle(MySQLAccess_Config.brief_title_query1_LIKE_SYMBOL);
-	    		 mysql_access.getClinical_studyTable_instance().RunAnalysis_BriefTitle(MySQLAccess_Config.brief_title_query2_LIKE_BINARY_NAME);
-	    		 mysql_access.getClinical_studyTable_instance().RunAnalysis_BriefTitle(MySQLAccess_Config.brief_title_query2_LIKE_NAME);*/
+	    		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile brief_title_query1_LIKE_BINARY_SYMBOL *************");
+	    		 constructExcelFile("column_brief_title_query1_LIKE_BINARY_SYMBOL" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 	    		 
+	    		 temp_time_arraylist =null;
+	    		 clinical_study.reset_Time_Row();
+	    		 temp_time_arraylist = new ArrayList<Double>();
+	    		 System.out.println(" ************* [Main] brief_title_query1_LIKE_SYMBOL *************");
+	    		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
+	    			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+	    			 clinical_study.RunAnalysis_BriefTitle(MySQLAccess_Config.brief_title_query1_LIKE_SYMBOL , test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+	    			 temp_time_arraylist.add(clinical_study.getElapsed_time());
+	    		 }
+	    		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
+	    		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
+	    		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile brief_title_query1_LIKE_SYMBOL *************");
+	    		 constructExcelFile("column_brief_title_query1_LIKE_SYMBOL" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
+	    		 
+	    		 temp_time_arraylist =null;
+	    		 clinical_study.reset_Time_Row();
+	    		 temp_time_arraylist = new ArrayList<Double>();
+	    		 System.out.println(" ************* [Main] brief_title_query2_LIKE_BINARY_NAME *************");
+	    		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
+	    			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+	    	
+	    			 clinical_study.RunAnalysis_BriefTitle_Name(test.get_connect_instance(),MySQLAccess_Config.brief_title_query2_LIKE_BINARY_NAME , test.getGeneTable_instance().getArrayListGenesets().get(i).getName());
+	    			 temp_time_arraylist.add(clinical_study.getElapsed_time());
+	    		 }
+	    		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
+	    		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
+	    		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile brief_title_query2_LIKE_BINARY_NAME *************");
+	    		 constructExcelFile("column_brief_title_query2_LIKE_BINARY_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
+	    		
+	    		 temp_time_arraylist =null;
+	    		 clinical_study.reset_Time_Row();
+	    		 temp_time_arraylist = new ArrayList<Double>();
+	    		 System.out.println(" ************* [Main] brief_title_query2_LIKE_NAME *************");
+	    		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
+	    			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+	    			clinical_study.RunAnalysis_BriefTitle_Name(test.get_connect_instance(),MySQLAccess_Config.brief_title_query2_LIKE_NAME , test.getGeneTable_instance().getArrayListGenesets().get(i).getName());
+	    			 temp_time_arraylist.add(clinical_study.getElapsed_time());
+	    		 }
+	    		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
+	    		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
+	    		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile brief_title_query2_LIKE_NAME *************");
+	    		 constructExcelFile("column_brief_title_query2_LIKE_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
+				
 	    	 }
 	    	 
 	  }
