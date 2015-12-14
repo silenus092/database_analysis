@@ -38,7 +38,25 @@ public class MySQLAccess_ClinicalStudyTable {
 	public void setStatement(Statement statement) {
 		this.statement = statement;
 	}
-
+	public void RunAnalysis_FULLTEXT_BriefTitle(String cmd  , String value){
+		try {
+			
+			stopWatch  = new StopWatch();
+			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"')");
+		    elapsed_time = stopWatch.getElapsedTime();
+		    stopWatch=null;
+			writeResultSet(resultSet);
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			stopWatch.getElapsedTime();
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+	
 	public void RunAnalysis_BriefTitle(String cmd  , String value){
 		try {
 			
@@ -74,6 +92,23 @@ public class MySQLAccess_ClinicalStudyTable {
 		}
 	}
 	
+	public void RunANalysis_BriefTitle_SYMBOL_NAME(Connection connection , String cmd  , String symbol ,String name)  {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(cmd);
+			preparedStatement.setString(1, "% " + name + "% AND % "+symbol+" %" ); 
+			stopWatch  = new StopWatch();
+			ResultSet resultSet = preparedStatement.executeQuery();
+		    elapsed_time = stopWatch.getElapsedTime();
+		    stopWatch=null;
+			writeResultSet(resultSet);
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			  stopWatch=null;
+			e.printStackTrace();
+			
+		}
+	}
 	 private void writeResultSet(ResultSet resultSet) throws SQLException {
 		  	long count = 1;
 		    // ResultSet is initially before the first data set

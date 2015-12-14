@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Utils.StopWatch;
 import main.GeneSets;
+@SuppressWarnings("unused")
 public class MySQLAccess_GeneTable {
 	  private ArrayList<GeneSets> genesets;
 	  private StopWatch stopWatch ;

@@ -7,21 +7,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
 
 import Utils.StopWatch;
-import main.GeneSets;
+
 
 public class MySQLAccess_Driver {
   private Connection connect = null;
   private Statement statement = null;
-  private PreparedStatement preparedStatement = null;
+
   private ResultSet resultSet = null;
   private  String database_host ="jdbc:mysql://localhost:3306/";
   private  String database_name = null ;
-  private  String database_table = null;
+
   private  String database_username = "root" ;
   private  String database_password = "password" ;
   private   Logger lgr;

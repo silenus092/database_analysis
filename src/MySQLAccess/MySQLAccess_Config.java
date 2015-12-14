@@ -24,9 +24,22 @@ public class  MySQLAccess_Config {
 			" FROM clinical_study c " +
 			" WHERE c.brief_title LIKE ?";
 	
-	/*public static String brief_title_query3_LIKE_BINARY_SYMBOL_NAME
+	public static String brief_title_query3_LIKE_BINARY_SYMBOL_NAME  = " SELECT c.nct_id , c.brief_title  "+
+			" FROM clinical_study c  " +
+			" WHERE c.brief_title LIKE BINARY ?";
 	
-	public static String brief_title_query3_LIKE_SYMBOL_NAME
-	*/
+	public static String brief_title_query3_LIKE_SYMBOL_NAME = " SELECT c.nct_id , c.brief_title  "+
+			" FROM clinical_study c  " +
+			" WHERE c.brief_title LIKE BINARY ?";
+	
+	
+	public static String brief_title_query1_FULLTEXT_SYMBOL= " SELECT c.nct_id , c.brief_title  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_title) AGAINST ";
+	
+	public static String brief_title_query1_FULLTEXT_NAME= " SELECT c.nct_id , c.brief_title  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_title) AGAINST ";
+	
 
 }
