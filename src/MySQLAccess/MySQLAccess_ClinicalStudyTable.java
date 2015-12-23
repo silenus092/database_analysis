@@ -38,11 +38,28 @@ public class MySQLAccess_ClinicalStudyTable {
 	public void setStatement(Statement statement) {
 		this.statement = statement;
 	}
-	public void RunAnalysis_FULLTEXT_BriefTitle(String cmd  , String value){
+	
+	
+	public void RunAnalysis_FULLTEXT(String cmd  , String value){
+		try {
+			stopWatch  = new StopWatch();
+			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"')");
+		    elapsed_time = stopWatch.getElapsedTime();
+		    stopWatch=null;
+			writeResultSet(resultSet);
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			stopWatch.getElapsedTime();
+			e.printStackTrace();			
+		}
+	}
+	
+	public void RunAnalysis_FULLTEXT_SYMBOL_NAME(String cmd  , String value ,String value1){
 		try {
 			
 			stopWatch  = new StopWatch();
-			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"')");
+			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"','"+value1+"')");
 		    elapsed_time = stopWatch.getElapsedTime();
 		    stopWatch=null;
 			writeResultSet(resultSet);
@@ -55,9 +72,7 @@ public class MySQLAccess_ClinicalStudyTable {
 		}
 	}
 	
-	
-	
-	public void RunAnalysis_BriefTitle(String cmd  , String value){
+	public void RunAnalysis_LIKE(String cmd  , String value){
 		try {
 			
 			stopWatch  = new StopWatch();
@@ -74,7 +89,7 @@ public class MySQLAccess_ClinicalStudyTable {
 		}
 	}
 	
-	public void RunAnalysis_BriefTitle_Name(Connection connection , String cmd  , String value){
+	public void RunAnalysis_LIKE_Name(Connection connection , String cmd  , String value){
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(cmd);
 			preparedStatement.setString(1, "% " + value + "% "); 
@@ -92,7 +107,7 @@ public class MySQLAccess_ClinicalStudyTable {
 		}
 	}
 	
-	public void RunANalysis_BriefTitle_SYMBOL_NAME(Connection connection , String cmd  , String symbol ,String name)  {
+	public void RunAnalysis_LIKE_SYMBOL_NAME(Connection connection , String cmd  , String symbol ,String name)  {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(cmd);
 			preparedStatement.setString(1, "% " + name + "% AND % "+symbol+" %" ); 
@@ -101,7 +116,6 @@ public class MySQLAccess_ClinicalStudyTable {
 		    elapsed_time = stopWatch.getElapsedTime();
 		    stopWatch=null;
 			writeResultSet(resultSet);
-						
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			  stopWatch=null;
@@ -109,6 +123,9 @@ public class MySQLAccess_ClinicalStudyTable {
 			
 		}
 	}
+
+	
+	
 	 private void writeResultSet(ResultSet resultSet) throws SQLException {
 		  	long count = 1;
 		    // ResultSet is initially before the first data set

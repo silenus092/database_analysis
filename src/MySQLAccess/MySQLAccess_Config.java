@@ -36,7 +36,11 @@ public class  MySQLAccess_Config {
 			" FROM clinical_study c  " +
 			" WHERE MATCH (c.brief_title) AGAINST ";
 	
-	public static String brief_title_query1_FULLTEXT_NAME= " SELECT c.nct_id , c.brief_title  "+
+	public static String brief_title_query2_FULLTEXT_NAME= " SELECT c.nct_id , c.brief_title  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_title) AGAINST ";
+	
+	public static String brief_title_query3_FULLTEXT_SYMBOL_NAME = " SELECT c.nct_id , c.brief_title  "+
 			" FROM clinical_study c  " +
 			" WHERE MATCH (c.brief_title) AGAINST ";
 	//**************************************************************************************************************************************
@@ -68,9 +72,47 @@ public class  MySQLAccess_Config {
 			" FROM clinical_study c  " +
 			" WHERE MATCH (c.criteria) AGAINST ";
 	
-	public static String criteria_query1_FULLTEXT_NAME= " SELECT c.nct_id , c.criteria  "+
+	public static String criteria_query2_FULLTEXT_NAME= " SELECT c.nct_id , c.criteria  "+
 			" FROM clinical_study c  " +
 			" WHERE MATCH (c.criteria) AGAINST ";
 	
+	public static String  criteria_query3_FULLTEXT_SYMBOL_NAME = " SELECT c.nct_id , c.criteria  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.criteria) AGAINST ";
+	//**************************************************************************************************************************************
+	public static String summary_query1_LIKE_BINARY_SYMBOL = " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE c.brief_summary LIKE BINARY ";
+	
+	public static String summary_query1_LIKE_SYMBOL  = " SELECT c.nct_id  , c.brief_summary "+
+			" FROM clinical_study c " +
+			" WHERE c.brief_summary LIKE ";
+	
+	public static String summary_query2_LIKE_BINARY_NAME   = "SELECT c.nct_id  , c.brief_summary "+
+			" FROM clinical_study c " +
+			" WHERE c.brief_summary LIKE BINARY ?";
+	
+	public static String summary_query2_LIKE_NAME  = "SELECT c.nct_id  , c.brief_summary  "+
+			" FROM clinical_study c " +
+			" WHERE c.brief_summary LIKE ?";
+	
+	public static String summary_query3_LIKE_BINARY_SYMBOL_NAME  = " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE c.brief_summary LIKE BINARY ?";
+	
+	public static String summary_query3_LIKE_SYMBOL_NAME = " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE c.brief_summary LIKE BINARY ?";
 
+	public static String summary_query1_FULLTEXT_SYMBOL= " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_summary) AGAINST ";
+	
+	public static String summary_query2_FULLTEXT_NAME= " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_summary) AGAINST ";
+	
+	public static String summary_query3_FULLTEXT_SYMBOL_NAME= " SELECT c.nct_id , c.brief_summary  "+
+			" FROM clinical_study c  " +
+			" WHERE MATCH (c.brief_summary) AGAINST ";
 }
