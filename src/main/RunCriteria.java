@@ -165,8 +165,8 @@ public class RunCriteria {
 		
 		try {
 			 WriteExcel test = new WriteExcel();
-			    test.setOutputFile("c:/temp/"+ filename+".csv");
-			    //test.setOutputFile("/home/note/workspace/Output/"+ filename+".csv");
+			    //test.setOutputFile("c:/temp/"+ filename+".csv");
+			    test.setOutputFile("/home/note/workspace/Output/"+ filename+".csv");
 			    test.write(geneTable , temp_time_arraylist);
 		} catch (WriteException e) {
 			// TODO Auto-generated catch block
