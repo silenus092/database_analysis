@@ -59,7 +59,7 @@ public class MySQLAccess_ClinicalStudyTable {
 		try {
 			
 			stopWatch  = new StopWatch();
-			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"','"+value1+"')");
+			ResultSet resultSet = statement.executeQuery(cmd.concat("('"+value+" "+value1+"')"));
 		    elapsed_time = stopWatch.getElapsedTime();
 		    stopWatch=null;
 			writeResultSet(resultSet);
