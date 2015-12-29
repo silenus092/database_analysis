@@ -44,7 +44,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Criteria_query2_FULLTEXT_NAME *************");
 		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
 			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
-			 clinical_study.RunAnalysis_FULLTEXT(MySQLAccess_Config.criteria_query2_FULLTEXT_NAME , mysql_driver.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+			 clinical_study.RunAnalysis_FULLTEXT(MySQLAccess_Config.criteria_query2_FULLTEXT_NAME , mysql_driver.getGeneTable_instance().getArrayListGenesets().get(i).getName());
 			 temp_time_arraylist.add(clinical_study.getElapsed_time());
 		 }
 		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
@@ -65,8 +65,8 @@ public class RunCriteria {
 		 }
 		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());
 		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
-		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile Criteria_query2_FULLTEXT_NAME *************");
-		 constructExcelFile("column_criteria_FULLTEXT_Criteria_name" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
+		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile Criteria_query3_FULLTEXT_SYMBOL_NAME *************");
+		 constructExcelFile("column_criteria_FULLTEXT_Criteria_symbol_name" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
 	}
 	

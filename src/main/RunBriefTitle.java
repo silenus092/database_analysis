@@ -42,7 +42,7 @@ public class RunBriefTitle {
 		 System.out.println(" ************* [Main] brief_title_query2_FULLTEXT_NAME *************");
 		 for(int i = 0 ; i < geneTable.getArrayListGenesets().size() ; i++){
 			 //System.out.println("[Main] Gene Symbol  : "+test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
-			 clinical_study.RunAnalysis_FULLTEXT(MySQLAccess_Config.brief_title_query2_FULLTEXT_NAME , mysql_driver.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol());
+			 clinical_study.RunAnalysis_FULLTEXT(MySQLAccess_Config.brief_title_query2_FULLTEXT_NAME , mysql_driver.getGeneTable_instance().getArrayListGenesets().get(i).getName());
 			 temp_time_arraylist.add(clinical_study.getElapsed_time());
 		 }
 		 System.out.println("[Main] getTotal_row  : "+clinical_study.getTotal_row());

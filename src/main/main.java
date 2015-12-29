@@ -24,6 +24,8 @@ public class main {
 		
 		
 		RunAnalysisParser("brief_title",test );
+		RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
+		RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
 		test.close_connection();
 		
 		  

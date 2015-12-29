@@ -42,8 +42,24 @@ public class MySQLAccess_ClinicalStudyTable {
 	
 	public void RunAnalysis_FULLTEXT(String cmd  , String value){
 		try {
+			value = value.replace("'", "\\'");
 			stopWatch  = new StopWatch();
-			ResultSet resultSet = statement.executeQuery(cmd+ "('"+value+"')");
+			ResultSet resultSet = statement.executeQuery(cmd.concat("( '+(\""+value+"\")' in boolean mode) ") );
+		    elapsed_time = stopWatch.getElapsedTime();
+		    stopWatch=null;
+			writeResultSet(resultSet);
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			stopWatch.getElapsedTime();
+			e.printStackTrace();			
+		}
+	}
+	
+	public void RunAnalysis_FULLTEXT_NAME(String cmd  , String value){
+		try {
+			stopWatch  = new StopWatch();
+			ResultSet resultSet = statement.executeQuery(cmd+ "("+value+" in boolean mode )");
 		    elapsed_time = stopWatch.getElapsedTime();
 		    stopWatch=null;
 			writeResultSet(resultSet);
@@ -57,11 +73,11 @@ public class MySQLAccess_ClinicalStudyTable {
 	
 	public void RunAnalysis_FULLTEXT_SYMBOL_NAME(String cmd  , String value ,String value1){
 		try {
-			
+			value1 = value1.replace("'", "\\'");
 			stopWatch  = new StopWatch();
 
 
-			ResultSet resultSet = statement.executeQuery(cmd.concat("('"+value+" "+value1+"')"));
+			ResultSet resultSet = statement.executeQuery(cmd.concat("( '+(\""+value+"\") +(\""+value1+"\")'  in boolean mode) ") );
 
 		    elapsed_time = stopWatch.getElapsedTime();
 		    stopWatch=null;
