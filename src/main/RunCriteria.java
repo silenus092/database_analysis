@@ -20,6 +20,7 @@ public class RunCriteria {
 	}
 	
 	public void RunAnalysis_FULLTEXT_Criteria(){
+		
 		 ArrayList<Double> temp_time_arraylist ;
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] Prepare Analysis_Criteria FULLTEXT *************");
@@ -37,7 +38,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile Criteria_query1_FULLTEXT_SYMBOL *************");
 		 constructExcelFile("column_criteria_FULLTEXT_Criteria_symbol" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] Criteria_query2_FULLTEXT_NAME *************");
@@ -50,8 +51,8 @@ public class RunCriteria {
 		 System.out.println("[Main] getTotal_elapsed_time : "+ clinical_study.getTotal_elapsed_time());
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile Criteria_query1_FULLTEXT_SYMBOL *************");
 		 constructExcelFile("column_criteria_FULLTEXT_Criteria_symbol" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
-		  
-		 temp_time_arraylist =null;
+		 
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] Criteria_query3_FULLTEXT_SYMBOL_NAME *************");
@@ -67,10 +68,10 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile Criteria_query2_FULLTEXT_NAME *************");
 		 constructExcelFile("column_criteria_FULLTEXT_Criteria_name" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-	
 	}
 	
 	public  void RunAnalysis_Criteria(){
+		
 		 ArrayList<Double> temp_time_arraylist ;
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] Prepare Analysis_Criteria *************");
@@ -88,7 +89,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query1_LIKE_BINARY_SYMBOL *************");
 		 constructExcelFile("column_criteria_query1_LIKE_BINARY_SYMBOL" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] criteria_query1_LIKE_SYMBOL *************");
@@ -102,7 +103,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query1_LIKE_SYMBOL*************");
 		 constructExcelFile("column_criteria_query1_LIKE_SYMBOL" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] criteria_query2_LIKE_BINARY_NAME *************");
@@ -117,7 +118,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query2_LIKE_BINARY_NAME *************");
 		 constructExcelFile("column_criteria_query2_LIKE_BINARY_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] criteria_query2_LIKE_NAME *************");
@@ -131,8 +132,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query2_LIKE_NAME *************");
 		 constructExcelFile("column_criteria_query2_LIKE_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] criteria_query3__LIKE_BINARY_SYMBOL_NAME *************");
@@ -146,8 +146,7 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query3_LIKE_BINARY_SYMBOL_NAME *************");
 		 constructExcelFile("column_criteria_query3__LIKE_BINARY_SYMBOL_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 		 
-		 
-		 temp_time_arraylist =null;
+		 temp_time_arraylist =null ;
 		 clinical_study.reset_Time_Row();
 		 temp_time_arraylist = new ArrayList<Double>();
 		 System.out.println(" ************* [Main] criteria_query3_LIKE_SYMBOL_NAME *************");
@@ -161,8 +160,8 @@ public class RunCriteria {
 		 System.out.println(" ************* [Main] Prepare for Wirting ExcelFile criteria_query3_LIKE_SYMBOL_NAME*************");
 		 constructExcelFile("column_criteria_query3_LIKE_SYMBOL_NAME" ,geneTable.getArrayListGenesets() ,temp_time_arraylist);
 	}
+	
 	public  void constructExcelFile(String filename , ArrayList<GeneSets> geneTable,ArrayList<Double> temp_time_arraylist){
-		
 		try {
 			 WriteExcel test = new WriteExcel();
 			    //test.setOutputFile("c:/temp/"+ filename+".csv");
