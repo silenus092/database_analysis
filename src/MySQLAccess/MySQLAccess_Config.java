@@ -8,6 +8,11 @@ public class  MySQLAccess_Config {
 	public static String column_brief_summary = "brief_summary";
 	public static String column_criteria = "criteria";
 	
+	public static String select_all_clinicalstudy_rows = "select nct_id , brief_title ,brief_summary ,"
+								+ "detailed_description , criteria from clinical_study";
+	
+	
+	/**********************************************************************************************************/
 	public static String brief_title_query1_LIKE_BINARY_SYMBOL = " SELECT c.nct_id , c.brief_title  "+
 			" FROM clinical_study c  " +
 			" WHERE c.brief_title LIKE BINARY ";
