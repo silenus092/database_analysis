@@ -26,7 +26,7 @@ public class main {
 		// RunAnalysisParser("brief_title",test );
 		// RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
 		// RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
-		 RunPatternMatching(test);
+		 new BoyerMoore().RunPatternMatching(test);
 		test.close_connection();
 		
 
@@ -47,20 +47,5 @@ public class main {
 
 	}
 	
-	public static void RunPatternMatching(MySQLAccess_Driver test) {
-		//test
-		int instance_num = 1 ;
-		ClnicalStudyTable x;
-		while((x = test.getClinical_studyTable_instance()
-				.RuncmdSelectAllForBM(test.get_connect_instance(), MySQLAccess_Config.select_all_clinicalstudy_rows, instance_num))!=null){
-		 /*for(int i = 0 ; i < test.getGeneTable_instance().getArrayListGenesets().size();i++){
-			
-		 }*/
-		  System.out.println( instance_num +": "+x.getBrief_tiltle_column());
-		  x=null;
-		 instance_num++;
-		}
-		 
-		
-	}
+
 }
