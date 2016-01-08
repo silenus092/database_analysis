@@ -10,6 +10,7 @@ import MySQLAccess.MySQLAccess_Config;
 import MySQLAccess.MySQLAccess_Driver;
 import MySQLAccess.MySQLAccess_GeneTable;
 import Utils.WriteExcel;
+import Wordcount.WordCount;
 import jxl.write.WriteException;
 
 public class main {
@@ -17,16 +18,17 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		MySQLAccess_Driver test = new MySQLAccess_Driver("localhost:3306", "clintrialsgov_out", "root", "password");
+		MySQLAccess_Driver test = new MySQLAccess_Driver("localhost:3306", "clintrialsgov_out", "root", "");
 		test.readDataBase();
-		if (test.IsDBConnected()) {
+		/*if (test.IsDBConnected()) {
 			test.downloadGenes();
-		}
+		}**/
 
 		// RunAnalysisParser("brief_title",test );
 		// RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
 		// RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
-		 RunPatternMatching(test);
+		 //RunPatternMatching(test);
+		new WordCount().run();
 		test.close_connection();
 		
 
