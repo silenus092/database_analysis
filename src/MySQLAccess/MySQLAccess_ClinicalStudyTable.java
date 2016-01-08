@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.Connection;
 
 import Utils.StopWatch;
+import main.ClnicalStudyTable;
 import main.GeneSets;
 
 public class MySQLAccess_ClinicalStudyTable {
@@ -15,8 +16,8 @@ public class MySQLAccess_ClinicalStudyTable {
 	private double elapsed_time = 0;
 	private double total_elapsed_time = 0;
 	private int total_row = 0;
-
-
+	private PreparedStatement preparedStatement;
+	private ResultSet resultSet;
 	public void reset_Time_Row() {
 		total_elapsed_time = 0;
 		total_row = 0;
@@ -174,72 +175,30 @@ public class MySQLAccess_ClinicalStudyTable {
 
 	public ClnicalStudyTable RuncmdSelectAllForBM(Connection connection ,String cmd ,int instance_num){
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(cmd);
+			
 			if(instance_num == 1){
-				preparedStatement.setString(1, "LIMIT " + instance_num);
+				cmd = cmd.concat("LIMIT " + instance_num);
 			}else{
-				preparedStatement.setString(1, "LIMIT " + instance_num +",1");
+				instance_num--;
+				cmd = cmd.concat( "LIMIT " + instance_num +",1");
 			}
-			
+			  System.out.println( "cmd: "+cmd);
+			preparedStatement = connection.prepareStatement(cmd);
 		
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			
+			 resultSet = preparedStatement.executeQuery();
+			  while (resultSet.next()) { // It is possible to get the columns via
+					return new ClnicalStudyTable(resultSet.getString("nct_id"), resultSet.getString("brief_title"),
+							resultSet.getString("detailed_description"), resultSet.getString("brief_summary"), resultSet.getString("criteria"));
+			   
+			  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			stopWatch = null;
 			e.printStackTrace();
-
+			return null;	
 		}
-		return new ClnicalStudyTable(cmd, cmd, cmd, cmd, cmd);
-	}
-	
-	private class ClnicalStudyTable{
-		private String nct_id="";
-		private String brief_tiltle_column = "";
-		private String full_summary_column = "";
-		private String brief_summary_column = "";
-		private String criteria_column = "";
-		
-		public ClnicalStudyTable(String nct_id, String brief_tiltle_column, String full_summary_column,
-				String brief_summary_column, String criteria_column) {
-			this.nct_id = nct_id;
-			this.brief_tiltle_column = brief_tiltle_column;
-			this.full_summary_column = full_summary_column;
-			this.brief_summary_column = brief_summary_column;
-			this.criteria_column = criteria_column;
-		}
-		public String getNct_id() {
-			return nct_id;
-		}
-		public void setNct_id(String nct_id) {
-			this.nct_id = nct_id;
-		}
-		public String getBrief_tiltle_column() {
-			return brief_tiltle_column;
-		}
-	
-		public void setBrief_tiltle_column(String brief_tiltle_column) {
-			this.brief_tiltle_column = brief_tiltle_column;
-		}
-		public String getBrief_summary_column() {
-			return brief_summary_column;
-		}
-		public void setBrief_summary_column(String brief_summary_column) {
-			this.brief_summary_column = brief_summary_column;
-		}
-		public String getFull_summary_column() {
-			return full_summary_column;
-		}
-		public void setFull_summary_column(String full_summary_column) {
-			this.full_summary_column = full_summary_column;
-		}
-		public String getCriteria_column() {
-			return criteria_column;
-		}
-		public void setCriteria_column(String criteria_column) {
-			this.criteria_column = criteria_column;
-		}
+		return null;
 		
 	}
+	
+	
 }

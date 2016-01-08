@@ -8,8 +8,8 @@ public class  MySQLAccess_Config {
 	public static String column_brief_summary = "brief_summary";
 	public static String column_criteria = "criteria";
 	
-	public static String select_all_clinicalstudy_rows = "select nct_id , brief_title ,brief_summary ,"
-								+ "detailed_description , criteria from clinical_study";
+	public static String select_all_clinicalstudy_rows = "SELECT nct_id , brief_title ,brief_summary ,"
+								+ "detailed_description , criteria FROM clinical_study ";
 	
 	
 	/**********************************************************************************************************/

@@ -3,8 +3,9 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import BoyerMooreSearchMatcher.BoyerMooreMain;
+import BoyerMoore.BoyerMoore;
 import MySQLAccess.MySQLAccess_ClinicalStudyTable;
+
 import MySQLAccess.MySQLAccess_Config;
 import MySQLAccess.MySQLAccess_Driver;
 import MySQLAccess.MySQLAccess_GeneTable;
@@ -47,14 +48,19 @@ public class main {
 	}
 	
 	public static void RunPatternMatching(MySQLAccess_Driver test) {
-		BoyerMooreMain stm = new BoyerMooreMain(test);
-		String tt, pp;
-		tt = "z";
-		pp = "abc";
-		stm.search(tt, pp);
-		System.out.println(pp);
-		System.out.println(tt);
-		System.out.println(stm.showmatches);
-		System.out.println(stm.getMatches());
+		//test
+		int instance_num = 1 ;
+		ClnicalStudyTable x;
+		while((x = test.getClinical_studyTable_instance()
+				.RuncmdSelectAllForBM(test.get_connect_instance(), MySQLAccess_Config.select_all_clinicalstudy_rows, instance_num))!=null){
+		 /*for(int i = 0 ; i < test.getGeneTable_instance().getArrayListGenesets().size();i++){
+			
+		 }*/
+		  System.out.println( instance_num +": "+x.getBrief_tiltle_column());
+		  x=null;
+		 instance_num++;
+		}
+		 
+		
 	}
 }
