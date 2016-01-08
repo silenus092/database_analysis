@@ -182,7 +182,7 @@ public class MySQLAccess_ClinicalStudyTable {
 				instance_num--;
 				cmd = cmd.concat( "LIMIT " + instance_num +",1");
 			}
-			  System.out.println( "cmd: "+cmd);
+			  //System.out.println( "cmd: "+cmd);
 			preparedStatement = connection.prepareStatement(cmd);
 		
 			 resultSet = preparedStatement.executeQuery();
