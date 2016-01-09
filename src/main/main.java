@@ -3,7 +3,9 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import BoyerMoore.BMH;
 import BoyerMoore.BoyerMoore;
+import BoyerMoore.TurboBM;
 import MySQLAccess.MySQLAccess_ClinicalStudyTable;
 
 import MySQLAccess.MySQLAccess_Config;
@@ -27,12 +29,17 @@ public class main {
 		// RunAnalysisParser("brief_title",test );
 		// RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
 		// RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
-<<<<<<< HEAD
 		 //RunPatternMatching(test);
-		new WordCount().run();
-=======
-		 new BoyerMoore().RunPatternMatching(test);
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+		// new WordCount().run(test);
+		BoyerMoore bm=  new BoyerMoore();
+		bm.RunPatternMatching(test);
+		TurboBM tbm = new TurboBM();
+		tbm.RunPatternMatching(test);
+		BMH bmh = new BMH();
+		bmh.RunPatternMatching(test);
+		 System.out.println("Runtime bm: " + bm.getTotal_elapsed_time()+" secs");
+		 System.out.println("Runtime tbm: " + tbm.getTotal_elapsed_time()+" secs");
+		 System.out.println("Runtime bmh: " + bmh.getTotal_elapsed_time()+" secs");
 		test.close_connection();
 		
 

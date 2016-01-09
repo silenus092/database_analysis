@@ -1,18 +1,14 @@
 package BoyerMoore;
 
-<<<<<<< HEAD
-=======
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+
 import java.util.List;
 
 import com.javacodegeeks.stringsearch.BM;
 import com.javacodegeeks.stringsearch.TBM;
 
-<<<<<<< HEAD
-=======
 import MySQLAccess.MySQLAccess_Config;
 import MySQLAccess.MySQLAccess_Driver;
 import Utils.StopWatch;
@@ -21,15 +17,12 @@ import jxl.write.WriteException;
 import main.ClnicalStudyTable;
 import main.GeneSets;
 
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
 public class TurboBM {
 	private StopWatch stopWatch;
 	private double elapsed_time = 0;
 	private double total_elapsed_time = 0;
 	HashMap<String,String> myMap = new HashMap<String,String>();
-	public TurboBM() {
-
-	}
+	
 
 	public int search(String source, String pattern) {
 		List<Integer> idx = TBM.findAll(pattern, source);
@@ -73,7 +66,7 @@ public class TurboBM {
 				}
 			}
 			elapsed_time = stopWatch.getElapsedTime();
-			total_elapsed_time += elapsed_time;
+			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
 			System.out.println("instance_num : " + instance_num+" use time :"+elapsed_time);
@@ -83,37 +76,17 @@ public class TurboBM {
 		System.out.println("Total time :"+elapsed_time);
 	}
 
-	public void constructExcelFile(String filename, ArrayList<GeneSets> geneTable,
-			ArrayList<Double> temp_time_arraylist) {
-
-<<<<<<< HEAD
-	public TurboBM()
-	{
-	
+	public double getTotal_elapsed_time() {
+		return total_elapsed_time;
 	}
 
-    public int search(String source, String pattern)
-    {
-    	List<Integer> idx = TBM.findAll(pattern, source);
-    	return idx.size();
-    }
+	public void setTotal_elapsed_time(double total_elapsed_time) {
+		this.total_elapsed_time = total_elapsed_time;
+	}
+
+
+
     
-    public void RunTurboBM(){
-    	
-    }
-=======
-		try {
-			WriteExcel test = new WriteExcel();
-			// test.setOutputFile("c:/temp/"+ filename+".csv");
-			test.setOutputFile("/home/note/workspace/Output/" + filename + ".csv");
-			test.write(geneTable, temp_time_arraylist);
-		} catch (WriteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+
+
 }

@@ -3,9 +3,12 @@ package Wordcount;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import MySQLAccess.MySQLAccess_Driver;
+
 public class WordCount {
-	public void run(String text){
-		String s = text;
+	
+	public void run(MySQLAccess_Driver text){
+		String s = text.toString();
 		String[] sArr = s.split(" ");
 		 
 		long startTime = 0;

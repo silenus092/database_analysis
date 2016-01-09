@@ -67,7 +67,7 @@ public class BoyerMoore {
 				}
 			}
 			elapsed_time = stopWatch.getElapsedTime();
-			total_elapsed_time += elapsed_time;
+			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
 			System.out.println("instance_num : " + instance_num+" use time :"+elapsed_time);
@@ -92,5 +92,13 @@ public class BoyerMoore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public double getTotal_elapsed_time() {
+		return total_elapsed_time;
+	}
+
+	public void setTotal_elapsed_time(double total_elapsed_time) {
+		this.total_elapsed_time = total_elapsed_time;
 	}
 }
