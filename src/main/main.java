@@ -30,19 +30,19 @@ public class main {
 		// RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
 		// RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
 		 //RunPatternMatching(test);
-		/*BoyerMoore bm=  new BoyerMoore();
+		BoyerMoore bm=  new BoyerMoore();
 		bm.RunPatternMatching(test);
-		TurboBM tbm = new TurboBM();
-		tbm.RunPatternMatching(test);
-		BMH bmh = new BMH();
-		bmh.RunPatternMatching(test);
+		//TurboBM tbm = new TurboBM();
+		//tbm.RunPatternMatching(test);
+		//BMH bmh = new BMH();
+		//bmh.RunPatternMatching(test);
 		 System.out.println("Runtime bm: " + bm.getTotal_elapsed_time()+" millisecs");
-		 System.out.println("Runtime tbm: " + tbm.getTotal_elapsed_time()+" millisecs");
-		 System.out.println("Runtime bmh: " + bmh.getTotal_elapsed_time()+" millisecs");*/
+		 //System.out.println("Runtime tbm: " + tbm.getTotal_elapsed_time()+" millisecs");
+		// System.out.println("Runtime bmh: " + bmh.getTotal_elapsed_time()+" millisecs");
 		 
-		 WordCount wordcount = new WordCount();
-		 wordcount.run(test);
-		 System.out.println("Runtime wordcount: " + wordcount.getTotal_elapsed_time()+" millisecs");
+		// WordCount wordcount = new WordCount();
+		// wordcount.run(test);
+		// System.out.println("Runtime wordcount: " + wordcount.getTotal_elapsed_time()+" millisecs");
 		test.close_connection();
 		
 
