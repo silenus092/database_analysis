@@ -20,6 +20,6 @@ public class StopWatch {
      */
     public double getElapsedTime() {
         long endTime = System.currentTimeMillis();
-        return (double) (endTime - startTime) / (1000);
+        return (endTime - startTime) ;
     }
 }

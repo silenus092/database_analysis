@@ -1,23 +1,17 @@
 package BoyerMoore;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.List;
 
-import com.javacodegeeks.stringsearch.BM;
-import com.javacodegeeks.stringsearch.TBM;
+import com.javacodegeeks.stringsearch.HP;
+
 
 import MySQLAccess.MySQLAccess_Config;
 import MySQLAccess.MySQLAccess_Driver;
 import Utils.StopWatch;
-import Utils.WriteExcel;
-import jxl.write.WriteException;
 import main.ClnicalStudyTable;
-import main.GeneSets;
 
-public class TurboBM {
+public class BMH {
 	private StopWatch stopWatch;
 	private double elapsed_time = 0;
 	private double total_elapsed_time = 0;
@@ -25,12 +19,12 @@ public class TurboBM {
 	
 
 	public int search(String source, String pattern) {
-		List<Integer> idx = TBM.findAll(pattern, source);
+		List<Integer> idx = HP.findAll(pattern, source);
 		return idx.size();
 	}
 
 	public void RunPatternMatching(MySQLAccess_Driver test) {
-		System.out.println("************** RunPatternMatching by  TBM ***********");
+		System.out.println("************** RunPatternMatching by  BMH ***********");
 		// test
 		boolean Isfound = false ;
 		int instance_num = 1;
@@ -69,7 +63,7 @@ public class TurboBM {
 			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
-			System.out.println("TBM instance_num : " + instance_num+" use time :"+elapsed_time);
+			System.out.println("BMH instance_num : " + instance_num+" use time :"+elapsed_time);
 			instance_num++;
 			
 		}
@@ -83,10 +77,4 @@ public class TurboBM {
 	public void setTotal_elapsed_time(double total_elapsed_time) {
 		this.total_elapsed_time = total_elapsed_time;
 	}
-
-
-
-    
-
-
 }
