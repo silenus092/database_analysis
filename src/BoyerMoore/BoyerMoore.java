@@ -33,41 +33,58 @@ public class BoyerMoore {
 	public void RunPatternMatching(MySQLAccess_Driver test) {
 		System.out.println("************** RunPatternMatching by  BM ***********");
 		// test
-		 ArrayList<Double> temp_time_arraylist = new ArrayList<Double>();
 		boolean Isfound = false ;
 		int instance_num = 1;
 		ClnicalStudyTable x;
+		ArrayList<GeneSets> array_list = test.getGeneTable_instance().getArrayListGenesets();
 		while ((x = test.getClinical_studyTable_instance().RuncmdSelectAllForBM(test.get_connect_instance(),
 				MySQLAccess_Config.select_all_clinicalstudy_rows, instance_num)) != null) {
 			stopWatch = new StopWatch();
 		
-			for (int i = 0; i < test.getGeneTable_instance().getArrayListGenesets().size(); i++) {
+			for (int i = 0; i < array_list.size(); i++) {
 				if (search(x.getBrief_tiltle_column(),
-						test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
-					 test.getGeneTable_instance().getArrayListGenesets().get(i).addContianed_nct_ID(x.getNct_id());
-				} else if (search(x.getBrief_summary_column(),
-							test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
-					test.getGeneTable_instance().getArrayListGenesets().get(i).addContianed_nct_ID(x.getNct_id());
-				}else if (search(x.getFull_summary_column(),
-								test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
-					test.getGeneTable_instance().getArrayListGenesets().get(i).addContianed_nct_ID(x.getNct_id());
-				}else  if (search(x.getCriteria_column(),
-									test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
-					test.getGeneTable_instance().getArrayListGenesets().get(i).addContianed_nct_ID(x.getNct_id());
-				}else {
-					
+						array_list.get(i).getSymbol()) <= 0) {
+					if (search(x.getBrief_summary_column(),
+							array_list.get(i).getSymbol()) <= 0) {
+						if (search(x.getFull_summary_column(),
+								array_list.get(i).getSymbol()) <= 0) {
+							if (search(x.getCriteria_column(),
+									array_list.get(i).getSymbol()) <= 0) {
+								//Isfound = false;
+							} else {
+								array_list.get(i).addContianed_nct_ID(x.getNct_id());
+									//Isfound = true;
+							}
+						} else {
+							array_list.get(i).addContianed_nct_ID(x.getNct_id());
+							//Isfound = true;
+						}
+					} else {
+						array_list.get(i).addContianed_nct_ID(x.getNct_id());
+						//Isfound = true;
+					}
+				} else {
+					array_list.get(i).addContianed_nct_ID(x.getNct_id());
+					//Isfound = true;
 				}
 				
+						/*search(x.getBrief_tiltle_column(),array_list.get(i).getSymbol());
+				search(x.getBrief_summary_column(),
+									array_list.get(i).getSymbol());
+								search(x.getFull_summary_column(),
+										array_list.get(i).getSymbol()); 
+									search(x.getCriteria_column(),
+											array_list.get(i).getSymbol());*/
 			}
 			elapsed_time = stopWatch.getElapsedTime();
 			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
-			//System.out.println("BM instance_num : " + instance_num+" use time :"+elapsed_time);
+			System.out.println("BM instance_num : " + instance_num+" use time :"+elapsed_time);
 			instance_num++;
 			
 		}
-		constructExcelFile("BoyerMoor",test.getGeneTable_instance().getArrayListGenesets(),null);
+		constructExcelFile("BM",test.getGeneTable_instance().getArrayListGenesets(),null);
 	}
 
 	public void constructExcelFile(String filename, ArrayList<GeneSets> geneTable,
