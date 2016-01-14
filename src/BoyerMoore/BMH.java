@@ -24,6 +24,7 @@ public class BMH {
 	
 
 	public int search(String source, String pattern) {
+		
 		List<Integer> idx = HP.findAll(pattern, source);
 		return idx.size();
 	}
@@ -31,45 +32,82 @@ public class BMH {
 	public void RunPatternMatching(MySQLAccess_Driver test) {
 		System.out.println("************** RunPatternMatching by  BMH ***********");
 		// test
-		boolean Isfound = false ;
+		
 		int instance_num = 1;
 		ClnicalStudyTable x;
 		ArrayList<GeneSets> array_list = test.getGeneTable_instance().getArrayListGenesets();
 		while ((x = test.getClinical_studyTable_instance().RuncmdSelectAllForBM(test.get_connect_instance(),
 				MySQLAccess_Config.select_all_clinicalstudy_rows, instance_num)) != null) {
+			boolean Isfound = false ;
 			stopWatch = new StopWatch();
-			for (int i = 0; i < array_list.size(); i++) {
-				if (search(x.getBrief_tiltle_column(),
-						array_list.get(i).getSymbol()) <= 0) {
-					if (search(x.getBrief_summary_column(),
-							array_list.get(i).getSymbol()) <= 0) {
-						if (search(x.getFull_summary_column(),
-								array_list.get(i).getSymbol()) <= 0) {
-							if (search(x.getCriteria_column(),
-									array_list.get(i).getSymbol()) <= 0) {
-								//Isfound = false;
-							} else {
-								array_list.get(i).addContianed_nct_ID(x.getNct_id());
-									//Isfound = true;
-							}
-						} else {
-							array_list.get(i).addContianed_nct_ID(x.getNct_id());
-							//Isfound = true;
-						}
-					} else {
-						array_list.get(i).addContianed_nct_ID(x.getNct_id());
-						//Isfound = true;
-					}
+			String title = StringRemoveUnnecessary(x.getBrief_tiltle_column());
+		
+		
+		
+
+			String doc_id = x.getNct_id();
+			if(!Isfound){
+			  for (int i = 0; i < array_list.size(); i++) {
+				if (search(title,array_list.get(i).getSymbol()) <= 0) {
+			
 				} else {
+					System.out.println(array_list.get(i).getSymbol()+" found  at title column : " + doc_id);
 					array_list.get(i).addContianed_nct_ID(x.getNct_id());
-					//Isfound = true;
+					Isfound = true;
+					break;
+				}
+			  }
+			}
+			if(!Isfound){
+				String brief_summary = StringRemoveUnnecessary(x.getBrief_summary_column());
+				for (int i = 0; i < array_list.size(); i++) {
+					
+					if (search(brief_summary,array_list.get(i).getSymbol()) <= 0) {
+						
+					} else {
+						System.out.println(array_list.get(i).getSymbol()+" found  at brief_summary column : " +doc_id);
+						array_list.get(i).addContianed_nct_ID(doc_id);
+						Isfound = true;
+						break;
+					}
+				
+			    }
+			}
+			if(!Isfound){
+				String  full_detailed = StringRemoveUnnecessary(x.getFull_summary_column());
+				for (int i = 0; i < array_list.size(); i++) {
+				
+						if (search(full_detailed,array_list.get(i).getSymbol()) <= 0) {
+							
+						} else {
+							System.out.println(array_list.get(i).getSymbol()+" found  at full_detailed column : " + doc_id);
+							array_list.get(i).addContianed_nct_ID(doc_id);
+							Isfound = true;
+							break;
+						}
+				
+			  }
+			}
+			if(!Isfound){
+				String criteria = StringRemoveUnnecessary(x.getCriteria_column());
+				for (int i = 0; i < array_list.size(); i++) {
+							if (search(criteria,array_list.get(i).getSymbol()) <= 0) {
+								System.out.println(array_list.get(i).getSymbol()+" not found any similar symbol at: " + doc_id);
+								
+							} else {
+								System.out.println(array_list.get(i).getSymbol()+" found  at criteria column : " + doc_id);
+								array_list.get(i).addContianed_nct_ID(doc_id);
+								Isfound = true;
+								break;
+							}
 				}
 			}
+		
 			elapsed_time = stopWatch.getElapsedTime();
 			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
+			System.out.println("BMH instance_num : " + instance_num+" "+doc_id+" use time :"+elapsed_time);
 			x = null;
-			System.out.println("BMH instance_num : " + instance_num+" use time :"+elapsed_time);
 			instance_num++;
 			
 		}
@@ -100,6 +138,10 @@ public class BMH {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String  StringRemoveUnnecessary(String Text){
+		return Text.replaceAll("[\r\n]+|\\(+|\\)+|,", "");
 	}
 
 }
