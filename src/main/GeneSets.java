@@ -1,11 +1,20 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class GeneSets {
 	private String hgnc_id;
 	private String symbol;
 	private String name;
+	private ArrayList<String> contianed_nct_ID= new ArrayList<String>();
 	
-	
+	public String getContianed_nct_ID() {
+		return  Arrays.toString(contianed_nct_ID.toArray()); 
+	}
+	public void addContianed_nct_ID(String contianed_nct_ID) {
+		this.contianed_nct_ID.add(contianed_nct_ID);
+	}
 	public GeneSets(String hgnc_id ,String  symbol,String name ){
 		this.hgnc_id = hgnc_id;
 		this.symbol = symbol;
@@ -34,6 +43,7 @@ public class GeneSets {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 
 }

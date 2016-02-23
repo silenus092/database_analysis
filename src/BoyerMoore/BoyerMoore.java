@@ -36,45 +36,55 @@ public class BoyerMoore {
 		boolean Isfound = false ;
 		int instance_num = 1;
 		ClnicalStudyTable x;
+		ArrayList<GeneSets> array_list = test.getGeneTable_instance().getArrayListGenesets();
 		while ((x = test.getClinical_studyTable_instance().RuncmdSelectAllForBM(test.get_connect_instance(),
 				MySQLAccess_Config.select_all_clinicalstudy_rows, instance_num)) != null) {
 			stopWatch = new StopWatch();
-			for (int i = 0; i < test.getGeneTable_instance().getArrayListGenesets().size(); i++) {
+		
+			for (int i = 0; i < array_list.size(); i++) {
 				if (search(x.getBrief_tiltle_column(),
-						test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
+						array_list.get(i).getSymbol()) <= 0) {
 					if (search(x.getBrief_summary_column(),
-							test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
+							array_list.get(i).getSymbol()) <= 0) {
 						if (search(x.getFull_summary_column(),
-								test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
+								array_list.get(i).getSymbol()) <= 0) {
 							if (search(x.getCriteria_column(),
-									test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol()) <= 0) {
+									array_list.get(i).getSymbol()) <= 0) {
 								//Isfound = false;
 							} else {
-								//myMap.put(test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol(), x.getBrief_tiltle_column());
+								array_list.get(i).addContianed_nct_ID(x.getNct_id());
 									//Isfound = true;
 							}
 						} else {
-							//myMap.put(test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol(), value)
+							array_list.get(i).addContianed_nct_ID(x.getNct_id());
 							//Isfound = true;
 						}
 					} else {
-						//myMap.put(test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol(), value)
+						array_list.get(i).addContianed_nct_ID(x.getNct_id());
 						//Isfound = true;
 					}
 				} else {
-					//myMap.put(test.getGeneTable_instance().getArrayListGenesets().get(i).getSymbol(), value)
+					array_list.get(i).addContianed_nct_ID(x.getNct_id());
 					//Isfound = true;
 				}
+				
+						/*search(x.getBrief_tiltle_column(),array_list.get(i).getSymbol());
+				search(x.getBrief_summary_column(),
+									array_list.get(i).getSymbol());
+								search(x.getFull_summary_column(),
+										array_list.get(i).getSymbol()); 
+									search(x.getCriteria_column(),
+											array_list.get(i).getSymbol());*/
 			}
 			elapsed_time = stopWatch.getElapsedTime();
-			total_elapsed_time += elapsed_time;
+			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
-			System.out.println("instance_num : " + instance_num+" use time :"+elapsed_time);
+			System.out.println("BM instance_num : " + instance_num+" use time :"+elapsed_time);
 			instance_num++;
 			
 		}
-	
+		constructExcelFile("BM",test.getGeneTable_instance().getArrayListGenesets(),null);
 	}
 	public double getElapsed_time(){
 		return elapsed_time;
@@ -95,5 +105,13 @@ public class BoyerMoore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public double getTotal_elapsed_time() {
+		return total_elapsed_time;
+	}
+
+	public void setTotal_elapsed_time(double total_elapsed_time) {
+		this.total_elapsed_time = total_elapsed_time;
 	}
 }

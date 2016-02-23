@@ -77,7 +77,7 @@ public class MySQLAccess_GeneTable {
 		      // get the row number of the last row which is also the row count
 		      int rowCount = resultSet.getRow();
 		  
-		      System.out.println("Query Finish :" +elapsed_time +" secs");
+		      System.out.println("Query Finish :" +elapsed_time +" millisecs");
 		      System.out.println("rowCount = " + rowCount);
 		  }
 }

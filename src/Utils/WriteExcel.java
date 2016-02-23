@@ -48,8 +48,14 @@ public class WriteExcel {
    WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
    workbook.createSheet("Report", 0);
    WritableSheet excelSheet = workbook.getSheet(0);
-   createLabel(excelSheet);
-   createContent(excelSheet,geneTable ,temp_time_arraylist);
+   if(temp_time_arraylist == null){
+	   createLabelForPreprocessing(excelSheet);
+	   createContentPreprocessing(excelSheet,geneTable ,temp_time_arraylist);
+   }else{
+	   createLabel(excelSheet);
+	   createContent(excelSheet,geneTable ,temp_time_arraylist);
+   }
+
 
    workbook.write();
    workbook.close();
@@ -80,10 +86,33 @@ public class WriteExcel {
    // Write a few headers 
    addCaption(sheet, 0, 0, "Gene Name");
    addCaption(sheet, 1, 0, "Execution time");
-    
-
  } 
 
+ private void createLabelForPreprocessing(WritableSheet sheet)
+	     throws WriteException { 
+	   // Lets create a times font 
+	   WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+	   // Define the cell format 
+	   times = new WritableCellFormat(times10pt);
+	   // Lets automatically wrap the cells 
+	   times.setWrap(true);
+
+	   // create create a bold font with unterlines 
+	   WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false,
+	       UnderlineStyle.SINGLE); 
+	   timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+	   // Lets automatically wrap the cells 
+	   timesBoldUnderline.setWrap(true);
+
+	   CellView cv = new CellView();
+	   cv.setFormat(times);
+	   cv.setFormat(timesBoldUnderline);
+	   cv.setAutosize(true);
+
+	   // Write a few headers 
+	   addCaption(sheet, 0, 0, "Gene Name");
+	   addCaption(sheet, 1, 0, "Found");
+	 } 
  private void createContent(WritableSheet sheet, ArrayList<GeneSets> geneTable,ArrayList<Double> temp_time_arraylist) throws WriteException,
      RowsExceededException { 
    // Write a few number 
@@ -97,7 +126,19 @@ public class WriteExcel {
    } 
 
  } 
+ private void createContentPreprocessing(WritableSheet sheet, ArrayList<GeneSets> geneTable,ArrayList<Double> temp_time_arraylist) throws WriteException,
+ RowsExceededException { 
+// Write a few number 
+ int j = 0;
+for (int i = 1; i < geneTable.size()+1; i++) {
+ // First column 
+ addLabel(sheet, 0, i,geneTable.get(j).getSymbol());
+ // Second column 
+ addLabel(sheet, 1, i, geneTable.get(j).getContianed_nct_ID());
+ j++;
+} 
 
+} 
  private void addCaption(WritableSheet sheet, int column, int row, String s)
      throws RowsExceededException, WriteException { 
    Label label;

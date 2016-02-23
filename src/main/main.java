@@ -3,7 +3,9 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import BoyerMoore.BMH;
 import BoyerMoore.BoyerMoore;
+import BoyerMoore.TurboBM;
 import MySQLAccess.MySQLAccess_ClinicalStudyTable;
 
 import MySQLAccess.MySQLAccess_Config;
@@ -18,7 +20,7 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		MySQLAccess_Driver test = new MySQLAccess_Driver("localhost:3306", "clintrialsgov_out", "root", "");
+		MySQLAccess_Driver test = new MySQLAccess_Driver("localhost:3306", "clintrialsgov_out", "root", "password");
 		test.readDataBase();
 		if (test.IsDBConnected()) {
 			test.downloadGenes();
@@ -27,6 +29,7 @@ public class main {
 		// RunAnalysisParser("brief_title",test );
 		// RunAnalysisParser(MySQLAccess_Config.column_criteria,test );
 		// RunAnalysisParser(MySQLAccess_Config.column_brief_summary,test );
+<<<<<<< HEAD
 
 		 //RunPatternMatching(test);
 		 //new WordCount().run();
@@ -34,6 +37,22 @@ public class main {
 		BoyerMoore bm = new BoyerMoore();
 		bm.RunPatternMatching(test);
 		 System.out.println("Usage TIme:"+bm.getElapsed_time());
+=======
+		 //RunPatternMatching(test);
+		//BoyerMoore bm=  new BoyerMoore();
+		//bm.RunPatternMatching(test);
+		//TurboBM tbm = new TurboBM();
+		//tbm.RunPatternMatching(test);
+		BMH bmh = new BMH();
+		bmh.RunPatternMatching(test);
+		 //System.out.println("Runtime bm: " + bm.getTotal_elapsed_time()+" millisecs");
+		 //System.out.println("Runtime tbm: " + tbm.getTotal_elapsed_time()+" millisecs");
+		 System.out.println("Runtime bmh: " + bmh.getTotal_elapsed_time()+" millisecs");
+		 
+		// WordCount wordcount = new WordCount();
+		// wordcount.run(test);
+		// System.out.println("Runtime wordcount: " + wordcount.getTotal_elapsed_time()+" millisecs");
+>>>>>>> 2dc841adf728f899ba77c11c26af315cfb210e5a
 		test.close_connection();
 		
 

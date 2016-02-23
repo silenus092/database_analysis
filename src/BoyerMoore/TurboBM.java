@@ -1,6 +1,9 @@
 package BoyerMoore;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2dc841adf728f899ba77c11c26af315cfb210e5a
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,15 +21,16 @@ import jxl.write.WriteException;
 import main.ClnicalStudyTable;
 import main.GeneSets;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2dc841adf728f899ba77c11c26af315cfb210e5a
 public class TurboBM {
 	private StopWatch stopWatch;
 	private double elapsed_time = 0;
 	private double total_elapsed_time = 0;
 	HashMap<String,String> myMap = new HashMap<String,String>();
-	public TurboBM() {
-
-	}
+	
 
 	public int search(String source, String pattern) {
 		List<Integer> idx = TBM.findAll(pattern, source);
@@ -70,19 +74,21 @@ public class TurboBM {
 				}
 			}
 			elapsed_time = stopWatch.getElapsedTime();
-			total_elapsed_time += elapsed_time;
+			setTotal_elapsed_time(getTotal_elapsed_time() + elapsed_time);
 			stopWatch = null;
 			x = null;
-			System.out.println("instance_num : " + instance_num+" use time :"+elapsed_time);
+			System.out.println("TBM instance_num : " + instance_num+" use time :"+elapsed_time);
 			instance_num++;
 			
 		}
 		System.out.println("Total time :"+elapsed_time);
 	}
 
-	public void constructExcelFile(String filename, ArrayList<GeneSets> geneTable,
-			ArrayList<Double> temp_time_arraylist) {
+	public double getTotal_elapsed_time() {
+		return total_elapsed_time;
+	}
 
+<<<<<<< HEAD
 		try {
 			WriteExcel test = new WriteExcel();
 			// test.setOutputFile("c:/temp/"+ filename+".csv");
@@ -103,5 +109,15 @@ public class TurboBM {
     }
 
 	
+=======
+	public void setTotal_elapsed_time(double total_elapsed_time) {
+		this.total_elapsed_time = total_elapsed_time;
+	}
+
+
+
+    
+
+>>>>>>> 2dc841adf728f899ba77c11c26af315cfb210e5a
 
 }
