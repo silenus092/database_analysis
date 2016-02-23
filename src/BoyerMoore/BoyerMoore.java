@@ -76,7 +76,10 @@ public class BoyerMoore {
 		}
 	
 	}
-
+	public double getElapsed_time(){
+		return elapsed_time;
+		
+	}
 	public void constructExcelFile(String filename, ArrayList<GeneSets> geneTable,
 			ArrayList<Double> temp_time_arraylist) {
 

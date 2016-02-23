@@ -1,18 +1,15 @@
 package BoyerMoore;
 
-<<<<<<< HEAD
-=======
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+
 import java.util.List;
 
 import com.javacodegeeks.stringsearch.BM;
 import com.javacodegeeks.stringsearch.TBM;
 
-<<<<<<< HEAD
-=======
 import MySQLAccess.MySQLAccess_Config;
 import MySQLAccess.MySQLAccess_Driver;
 import Utils.StopWatch;
@@ -21,7 +18,7 @@ import jxl.write.WriteException;
 import main.ClnicalStudyTable;
 import main.GeneSets;
 
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+
 public class TurboBM {
 	private StopWatch stopWatch;
 	private double elapsed_time = 0;
@@ -86,22 +83,6 @@ public class TurboBM {
 	public void constructExcelFile(String filename, ArrayList<GeneSets> geneTable,
 			ArrayList<Double> temp_time_arraylist) {
 
-<<<<<<< HEAD
-	public TurboBM()
-	{
-	
-	}
-
-    public int search(String source, String pattern)
-    {
-    	List<Integer> idx = TBM.findAll(pattern, source);
-    	return idx.size();
-    }
-    
-    public void RunTurboBM(){
-    	
-    }
-=======
 		try {
 			WriteExcel test = new WriteExcel();
 			// test.setOutputFile("c:/temp/"+ filename+".csv");
@@ -115,5 +96,12 @@ public class TurboBM {
 			e.printStackTrace();
 		}
 	}
->>>>>>> a411bebc6ac315e6a83565d74df16f2e3d832477
+
+    
+    public void RunTurboBM(){
+    	
+    }
+
+	
+
 }
